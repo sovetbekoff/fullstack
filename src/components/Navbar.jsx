@@ -247,6 +247,9 @@ export default function Navbar() {
             <Button sx={buttons} onClick={() => navigate("/register")}>
               Register
             </Button>
+            <Button sx={buttons} onClick={() => navigate("/products")}>
+              products
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
