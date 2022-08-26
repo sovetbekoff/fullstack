@@ -1,8 +1,9 @@
 import { BrowserRouter } from "react-router-dom";
-import Navbar from "./components/Navbar.jsx";
 import AuthContextProvider from "./contexts/AuthContextProvider.js";
 import ProductContextProvider from "./contexts/ProductContextProvider.js";
 import MainRoutes from "./MainRoutes";
+import "./App.css";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
   return (

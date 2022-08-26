@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Link as RouterLink } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContextProvider";
+import { useAuth } from "../../contexts/AuthContextProvider";
 import { Alert } from "@mui/material";
 
 function Copyright(props) {
@@ -37,19 +37,29 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Login() {
-  const { login, error, setError } = useAuth();
-  const [email, setEmail] = React.useState("");
+export default function Register() {
+  const { register, error, setError } = useAuth();
+
+  const [user, setUser] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
   function handleSave() {
+    if (!user.trim() || !password.trim() || !passwordConfirm.trim()) {
+      alert("Заполните поля!");
+      return;
+    }
+
     let formData = new FormData();
-    formData.append("email", email);
+    formData.append("user", user);
     formData.append("password", password);
-    login(formData, email);
+    formData.append("password_confirm", passwordConfirm);
+    register(formData);
   }
+
+  console.log(user, password, passwordConfirm);
   React.useEffect(() => {
-    setError("");
+    setError(false);
   }, []);
 
   return (
@@ -69,7 +79,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
           </Typography>
           <Box
             component="form"
@@ -81,13 +91,13 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="user"
+              label="user "
+              name="user"
+              autoComplete="user"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
             />
             <TextField
               margin="normal"
@@ -101,18 +111,31 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Confirm Password"
+              type="password"
+              id="password-confirm"
+              autoComplete="current-password"
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
-              //   type="submit"
+              type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSave}
             >
-              Log In
+              Register
             </Button>
             <Grid container>
               <Grid item xs>
@@ -121,9 +144,11 @@ export default function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <RouterLink to="/register">
+                {/* <Link href="#" variant="body2"> */}
+                <RouterLink to="/login">
                   <Typography>{"Don't have an account? Sign Up"}</Typography>
                 </RouterLink>
+                {/* </Link> */}
               </Grid>
             </Grid>
           </Box>

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export const authContext = React.createContext();
 export const useAuth = () => useContext(authContext);
 
-const API = "https://almakg.herokuapp.com";
+const API = "https://zelenyi.herokuapp.com/docs/";
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState("");
@@ -22,6 +22,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(Object.values(error.response.data).flat(2)[0]);
       console.log(error);
       setError(Object.values(error.response.data).flat(2)[0]);
+      setError(Object.values(error.response.data).flat(2));
     }
   };
 
@@ -39,7 +40,7 @@ const AuthContextProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       console.log([error.response.data.detail]);
-      // setError("Wrong username or password");
+      setError("Wrong username or password");
       setError([error.response.data.detail]);
     }
   };

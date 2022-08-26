@@ -9,12 +9,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import React, { useEffect, useState } from "react";
 import { useProducts } from "../../contexts/ProductContextProvider";
 
 const AddProduct = () => {
-  const { getCategories, categories, addProduct } = useProducts();
+  const { getCategories, categories, addProducts } = useProducts();
 
   const [product, setProduct] = useState({
     title: "",
@@ -38,20 +37,20 @@ const AddProduct = () => {
     }
   };
 
+  useEffect(() => {
+    getCategories();
+  }, []);
+
   console.log(categories);
 
   function handleSave() {
-    // let newProduct = new FormData();
-    // newProduct.append("title", product.title);
-    // newProduct.append("description", product.description);
-    // newProduct.append("price", product.price);
-    // newProduct.append("category", product.category);
-    // newProduct.append("image", product.image);
-    let newProduct = {
-      ...product,
-    };
-    console.log(newProduct);
-    addProduct(newProduct);
+    let newProduct = new FormData();
+    newProduct.append("title", product.title);
+    newProduct.append("description", product.description);
+    newProduct.append("price", product.price);
+    newProduct.append("category", product.category);
+    newProduct.append("image", product.image);
+    addProducts(newProduct);
   }
 
   return (
@@ -98,17 +97,9 @@ const AddProduct = () => {
         onChange={handleInp}
         value={product.price}
       />
-      {/* <TextField
-          sx={{ m: 1 }}
-          id="standard-basic"
-          label="Category"
-          variant="outlined"
-          fullWidth
-          name="category"
-        /> */}
 
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Image</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -122,27 +113,10 @@ const AddProduct = () => {
               {item.title}
             </MenuItem>
           ))}
-
-          {/* <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
       </FormControl>
-      {/* <TextField
-          sx={{ m: 1 }}
-          id="standard-basic"
-          label="Image"
-          variant="outlined"
-          fullWidth
-          name="image"
-        /> */}
 
-      <input
-        type="file"
-        // hidden
-        name="image"
-        onChange={handleInp}
-      />
+      <input type="file" name="image" onChange={handleInp} />
 
       <Button
         sx={{

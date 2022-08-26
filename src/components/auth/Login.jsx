@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Link as RouterLink } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContextProvider";
+import { useAuth } from "../../contexts/AuthContextProvider";
 import { Alert } from "@mui/material";
 
 function Copyright(props) {
@@ -37,30 +37,19 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function Register() {
-  const { register, error, setError } = useAuth();
-  console.log(register);
-
+export default function Login() {
+  const { login, error, setError } = useAuth();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
   function handleSave() {
-    if (!email.trim() || !password.trim() || !passwordConfirm.trim()) {
-      alert("Заполните поля!");
-      return;
-    }
-
     let formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("password_confirm", passwordConfirm);
-    register(formData);
+    login(formData, email);
   }
-
-  console.log(email, password, passwordConfirm);
   React.useEffect(() => {
-    setError(false);
+    setError("");
   }, []);
 
   return (
@@ -80,7 +69,7 @@ export default function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign in
           </Typography>
           <Box
             component="form"
@@ -97,8 +86,8 @@ export default function Register() {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={(e) => setEmail(e.target.value)}
               value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -112,19 +101,6 @@ export default function Register() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Confirm Password"
-              type="password"
-              id="password-confirm"
-              autoComplete="current-password"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-            />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -136,7 +112,7 @@ export default function Register() {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleSave}
             >
-              Register
+              Log In
             </Button>
             <Grid container>
               <Grid item xs>
@@ -145,11 +121,9 @@ export default function Register() {
                 </Link>
               </Grid>
               <Grid item>
-                {/* <Link href="#" variant="body2"> */}
-                <RouterLink to="/login">
+                <RouterLink to="/register">
                   <Typography>{"Don't have an account? Sign Up"}</Typography>
                 </RouterLink>
-                {/* </Link> */}
               </Grid>
             </Grid>
           </Box>
