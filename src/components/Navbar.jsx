@@ -9,7 +9,10 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContextProvider";
 const { Header, Content, Footer, Sider } = Layout;
 const items = [
   UserOutlined,
@@ -27,6 +30,15 @@ const items = [
 }));
 
 const Navbar = () => {
+  const { user, checkAuth, error, logout } = useAuth();
+
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (localStorage.getItem("token")) {
+      checkAuth();
+    }
+  }, []);
   return (
     <Layout hasSider>
       <Sider
@@ -72,23 +84,21 @@ const Navbar = () => {
               textAlign: "center",
             }}
           >
-            <p>long content</p>
+            // indicates very long content // Array.from( //{" "}
             {
-              // indicates very long content
-              Array.from(
-                {
-                  length: 100,
-                },
-                (_, index) => (
-                  <React.Fragment key={index}>
-                    {index % 20 === 0 && index ? "more" : "..."}
-                    <br />
-                  </React.Fragment>
-                )
-              )
+              //     length: 100,
+              //   },
+              //   (_, index) => (
+              //     <React.Fragment key={index}>
+              //       {index % 20 === 0 && index ? "more" : "..."}
+              //       <br />
+              //     </React.Fragment>
+              //   )
+              // )
             }
           </div>
         </Content>
+
         <Footer
           style={{
             textAlign: "center",

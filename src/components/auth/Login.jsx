@@ -49,7 +49,7 @@ export default function Login() {
     login(formData, email);
   }
   React.useEffect(() => {
-    setError("");
+    setError("Неверный пароль или имя ");
   }, []);
 
   return (
