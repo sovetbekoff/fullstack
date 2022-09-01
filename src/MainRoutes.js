@@ -7,10 +7,7 @@ import EditProduct from "./components/product/EditProduct";
 import ProductDetails from "./components/product/ProductDetails";
 import ProductList from "./components/product/ProductList";
 // import NotFoundPage from "./components/product/NotFoundPage";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Home from "./components/Home";
-
+import Register from "./components/Register";
 import AboutUsPage from "./pages/AboutUsPage";
 import AdminPage from "./pages/AdminPage";
 // import CartPage from "./pages/CartPage";
@@ -18,7 +15,6 @@ import AdminPage from "./pages/AdminPage";
 import HomePage from "./pages/HomePage";
 
 import NotFoundPage from "./pages/NotFoundPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ProductsPage from "./pages/ProductsPage";
 // import RegistrationPage from "./pages/RegistrationPage";
 
