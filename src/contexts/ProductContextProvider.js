@@ -8,7 +8,7 @@ export const useProducts = () => useContext(productContext);
 const INIT_STATE = {
   products: [],
   pages: 0,
-  oneProduct: null,
+  oneProduct: {},
   categories: [],
 };
 
@@ -29,7 +29,7 @@ function reducer(state = INIT_STATE, action) {
   }
 }
 
-const API = "https://zelenyi.herokuapp.com/docs/";
+const API = "https://zelenyi.herokuapp.com/api/v1";
 
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -45,10 +45,7 @@ const ProductContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios(
-        `${API}/products/${window.location.search}`,
-        config
-      );
+      const res = await axios(`${API}/posts/${window.location.search}`, config);
       console.log(res);
       dispatch({
         type: "GET_PRODUCTS",
@@ -69,7 +66,7 @@ const ProductContextProvider = ({ children }) => {
         },
       };
 
-      const res = await axios(`${API}/category/`, config);
+      const res = await axios(`${API}/category/categories`, config);
       console.log(res);
       dispatch({
         type: "GET_CATEGORIES",
@@ -89,7 +86,7 @@ const ProductContextProvider = ({ children }) => {
           Authorization,
         },
       };
-      const res = await axios.post(`${API}/products/`, newProduct, config);
+      const res = await axios.post(`${API}/posts/`, newProduct, config);
       console.log(res);
       navigate("/products");
     } catch (error) {
@@ -107,12 +104,70 @@ const ProductContextProvider = ({ children }) => {
         },
       };
 
-      await axios.delete(`${API}/products/${id}/`, config);
+      await axios.delete(`${API}/posts/${id}/`, config);
       getProducts();
     } catch (error) {
       console.log(error);
     }
   }
+
+  async function getProductsDetails(id) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      // let res = await axios.patch(`${API}/posts/${id}/`, config);
+      let res = await axios(`${API}/posts/${id}/`, config);
+      console.log(res);
+      dispatch({
+        type: "GET_ONE_PRODUCT",
+        payload: res.data,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function SaveEditProduct(edittedPost) {
+    console.log("this is saveedit");
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token.access}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+
+      let res = await axios.patch(
+        `${API}/posts/${edittedPost.id}/`,
+        edittedPost,
+        config
+      );
+      console.log(res);
+      getProducts();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const fetchByParams = (query, value) => {
+    const search = new URLSearchParams(window.location.search);
+
+    if (value === "all") {
+      search.delete(query);
+    } else {
+      search.set(query, value);
+    }
+    const url = `${window.location.pathname}?${search.toString()}`;
+    navigate(url);
+  };
 
   return (
     <productContext.Provider
@@ -124,6 +179,9 @@ const ProductContextProvider = ({ children }) => {
         products: state.products,
         pages: state.pages,
         categories: state.categories,
+        oneProduct: state.oneProduct,
+        SaveEditProduct,
+        getProductsDetails,
       }}
     >
       {children}

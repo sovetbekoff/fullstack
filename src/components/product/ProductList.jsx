@@ -1,5 +1,5 @@
-import { Pagination } from "antd";
-// import React from "react";
+import { Pagination } from "@mui/material";
+import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useProducts } from "../../contexts/ProductContextProvider";
@@ -14,6 +14,8 @@ const ProductList = () => {
     getProducts();
   }, []);
 
+  // console.log(products);
+
   useEffect(() => {
     getProducts();
   }, [searchParams]);
@@ -25,25 +27,24 @@ const ProductList = () => {
   }, [currentPage]);
 
   return (
-    <>
-      <div>
+    <div>
+      <Box>
         ProductList
         {products.map((item) => (
           <ProductCard key={item.id} item={item} />
         ))}
-      </div>
+      </Box>
 
-      <Pagination size="small" total={20} />
-      <Pagination size="small" total={20} showSizeChanger showQuickJumper />
-      <Pagination size="small" total={20} />
-      <Pagination
-        size="small"
-        total={20}
-        disabled
-        showSizeChanger
-        showQuickJumper
-      />
-    </>
+      <Box>
+        <Pagination
+          count={pages}
+          variant="outlined"
+          color="primary"
+          onChange={(e, page) => setCurrentPage(page)}
+          page={currentPage}
+        />
+      </Box>
+    </div>
   );
 };
 

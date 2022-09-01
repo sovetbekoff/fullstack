@@ -22,9 +22,11 @@ const AddProduct = () => {
     category: "",
     image: "",
   });
+  console.log(product);
 
   const handleInp = (e) => {
     if (e.target.name === "image") {
+      console.log(e.target.files[0]);
       setProduct({
         ...product,
         [e.target.name]: e.target.files[0],
@@ -97,9 +99,17 @@ const AddProduct = () => {
         onChange={handleInp}
         value={product.price}
       />
+      {/* <TextField
+        sx={{ m: 1 }}
+        id="standard-basic"
+        label="Category"
+        variant="outlined"
+        fullWidth
+        name="category"
+      /> */}
 
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Image</InputLabel>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -109,14 +119,32 @@ const AddProduct = () => {
           name="category"
         >
           {categories?.map((item) => (
-            <MenuItem value={item.id} key={item.id}>
-              {item.title}
+            <MenuItem value={item.slug} key={item.id}>
+              {item.slug}
             </MenuItem>
           ))}
+
+          {/* <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
       </FormControl>
+      {/* <TextField
+        sx={{ m: 1 }}
+        id="standard-basic"
+        label="Image"
+        variant="outlined"
+        fullWidth
+        name="image"
+      /> */}
 
-      <input type="file" name="image" onChange={handleInp} />
+      <input
+        type="file"
+        // hidden
+        name="image"
+        accept="image/png, image/jpeg"
+        onChange={handleInp}
+      />
 
       <Button
         sx={{
