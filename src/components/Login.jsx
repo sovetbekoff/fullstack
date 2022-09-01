@@ -49,7 +49,7 @@ export default function Login() {
     login(formData, username);
   }
   React.useEffect(() => {
-    setError("");
+    setError("Неверный пароль или имя ");
   }, []);
 
   const navigate = useNavigate();
