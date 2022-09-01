@@ -41,34 +41,30 @@ export default function Footer() {
             cursor: "pointer",
             m: 2,
           }}
-        >
+          >
           <Link target="_blank" href="https://github.com/sovetbekoff/fullstack">
-            <InstagramIcon sx={{ mr: 7, color: "#8C2CEF" }} />
+            <InstagramIcon sx={{ mr: 7, color:"gray", }} />
+        
           </Link>
           {/* <Link target="_blank" href="https://github.com/sovetbekoff/fullstack">
             <TelegramIcon sx={{ mr: 7, color: "#8C2CEF" }} />
           </Link> */}
           <Link target="_blank" href="https://github.com/sovetbekoff/fullstack">
-            <WhatsAppIcon sx={{ mr: 7, color: "#8C2CEF" }} />
+            <WhatsAppIcon sx={{ mr: 7, color: "gray" }} />
           </Link>
           <Link
             target="_blank"
             href="https://github.com/badoalmaz/project_with_mentor_java_post_scriptum"
           >
-            <TwitterIcon sx={{ mr: 7, color: "#8C2CEF" }} />
+            <TwitterIcon sx={{ mr: 7, color: "gray" }} />
           </Link>
           <Link
             target="_blank"
             href="https://github.com/badoalmaz/project_with_mentor_java_post_scriptum"
           >
-            <MailOutlineIcon sx={{ mr: 7, color: "#8C2CEF" }} />
+            <MailOutlineIcon sx={{ mr: 7, color: "gray" }} />
           </Link>
-          <Link
-            target="_blank"
-            href="https://github.com/badoalmaz/project_with_mentor_java_post_scriptum"
-          >
-            <GitHubIcon sx={{ mr: 7, color: "#8C2CEF" }} />
-          </Link>
+          
         </Box>
         <Box
           sx={{
