@@ -1,0 +1,138 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
+.auth-main {
+  width: 100%;
+  height: 100%;
+  color: #333;
+  font-family: "Poppins";
+}
+
+.auth-main * {
+  transition: 400ms;
+}
+
+.auth-block {
+  padding: 65px 55px 55px;
+  margin: 65px auto 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 60px #ccc;
+}
+
+.auth-header {
+  color: #333;
+  font-weight: bold;
+  font-size: 39px;
+  line-height: 1.2;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.auth__input-block p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-left: 5px;
+}
+
+.auth-input__form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25px;
+  cursor: text;
+  position: relative;
+}
+
+.auth__input-block input {
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  line-height: 1.2;
+  width: 100%;
+  height: 55px;
+  font-weight: 500;
+  padding-left: 30px;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+.auth__input-block input:focus {
+  border-bottom: 2px solid #8d8d8d;
+}
+
+.auth__input-block input::placeholder {
+  color: #adadad;
+  font-weight: 500;
+  user-select: none;
+}
+
+.auth-input__icon {
+  /* color: #adadad; */
+  cursor: text;
+  transition: 100ms;
+  position: absolute;
+}
+
+.auth-input__form label {
+  height: 24px;
+}
+
+.auth-input__form label svg {
+  margin-left: 3px;
+}
+
+.auth-btn {
+  font-size: 16px;
+  color: rgb(245, 245, 245);
+  align-items: center;
+  cursor: pointer;
+  height: 50px;
+  text-transform: uppercase;
+  background: #8c2cef;
+  border: 0;
+  width: 100%;
+  border-radius: 14px;
+  font-weight: 500;
+  margin-bottom: 55px;
+}
+
+.auth-btn:hover {
+  background-color: #5e0eae;
+  color: #fff;
+}
+
+.auth-link {
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  transition: 250ms;
+}
+
+.auth-another {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth__input-block {
+  width: 100%;
+}
+
+.auth-another p {
+  font-size: 14px;
+  padding-bottom: 20px;
+  color: #666666;
+}
+
+.auth-link:hover {
+  color: #8c2cef;
+}

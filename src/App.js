@@ -4,6 +4,7 @@ import ProductContextProvider from "./contexts/ProductContextProvider.js";
 import MainRoutes from "./MainRoutes";
 import "./App.css";
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <ProductContextProvider>
             <Navbar />
             <MainRoutes />
+            <Footer />
           </ProductContextProvider>
         </AuthContextProvider>
       </BrowserRouter>

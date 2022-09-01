@@ -19,12 +19,7 @@ import { Alert } from "@mui/material";
 
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="dark" align="center" {...props}>
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
@@ -56,7 +51,7 @@ export default function Register() {
     formData.append("password_confirm", passwordConfirm);
     register(formData);
   }
-
+  const API = "https://zelenyi.herokuapp.com/account/register/";
   console.log(user, password, passwordConfirm);
   React.useEffect(() => {
     setError(false);
@@ -79,7 +74,7 @@ export default function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            SING UP
           </Typography>
           <Box
             component="form"
